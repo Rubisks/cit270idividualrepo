@@ -1,1 +1,1 @@
-curl -d "@data.json" -X post https://dev.stedi.me/login
+curl -d "@data.json" -X post https://localhost/login
