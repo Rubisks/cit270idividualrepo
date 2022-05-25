@@ -54,11 +54,12 @@ const validatePassword = async (request,response)=>{
     }
 }
 
-const signup = (request, responce)=>{
+const signup = async (request, responce)=>{
     const newHashedPassword = md5(request.body.password);
-
-    redisClient.hSet("cradentials", request.body.userName, newHashedPassword);
-    console.log(request.body)
+    await redisClient.hSet("cradentials", request.body.userName, newHashedPassword);
+    responce.status(200);
+    responce.send({result:"saved"});
+    console.log(request.body);
 }
 
 // calls get and if there are no path parameters ('/')
@@ -67,6 +68,8 @@ console.log('app');// responce is when the API responds with data requesteid
 
 app.post('/login', validatePassword);// a post is when a client sends new information
 
+
+// gets cradentials uppon signup 
 app.post('/signup', signup);
 
 
