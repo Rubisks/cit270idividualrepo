@@ -1,4 +1,6 @@
 const express = require ('express');
+const https = require ('https');
+const fs = require('fs');
 // crates an explress application we cant listen without.
 const port = 3000;
 const app = express();
@@ -6,6 +8,7 @@ const md5 = require('md5');
 const bodyParser = require('body-parser');// body parser is called middleware
 const {createClient} = require('redis');
 const { response } = require('express');
+const { fstat } = require('fs');
 //const { response } = require('express');
 
 const redisClient = createClient(    
@@ -17,12 +20,14 @@ const redisClient = createClient(
     }
 );
 
-
-
 app.use(bodyParser.json());// use the middleware(call it before anthing else happens on each request)
 
 // call the listen through APP (express application)
-app.listen(port, async ()=>{
+https.createServer({
+    key: fs.readFileSync('server.key'),
+    cert: fs.readFileSync('server.cert'),
+
+},app).listen(port, async ()=>{
     await redisClient.connect();// makes a connections to redis database
     console.log("listening on port: " + port);
 });
