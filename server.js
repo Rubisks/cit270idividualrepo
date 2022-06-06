@@ -9,7 +9,6 @@ const bodyParser = require('body-parser');// body parser is called middleware
 const {createClient} = require('redis');
 const { response } = require('express');
 const { fstat } = require('fs');
-//const { response } = require('express');
 
 const redisClient = createClient(    
     {
@@ -26,7 +25,7 @@ app.use(bodyParser.json());// use the middleware(call it before anthing else hap
 https.createServer({
     key: fs.readFileSync('server.key'),
     cert: fs.readFileSync('server.cert'),
-
+    passphrase :'P@ssw0rd',
 },app).listen(port, async ()=>{
     await redisClient.connect();// makes a connections to redis database
     console.log("listening on port: " + port);
