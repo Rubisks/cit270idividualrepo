@@ -1,1 +1,1 @@
-curl -d "@signup.json" -X POST -H "Content-Type:application/json" http://tucker.cit270/signup
+curl -d "@signup.json" -X POST -H "Content-Type:application/json" https://tucker.cit270/signup
