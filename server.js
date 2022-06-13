@@ -58,23 +58,20 @@ const validatePassword = async (request,response)=>{
     }
 }
 
-const signup = async (request, responce)=>{
+const signup = async (request, response)=>{
     const newHashedPassword = md5(request.body.password);
     await redisClient.hSet("cradentials", request.body.userName, newHashedPassword);
-    responce.status(200);
-    responce.send({result:"saved"});
+    response.status(200);
+    response.send({result:"saved"});
     console.log(request.body);
 }
 
 // calls get and if there are no path parameters ('/')
 app.get('/', (req,res)=>{res.send("Hello")});//every time somthing calls your API that is a request
+
 console.log('app');// responce is when the API responds with data requesteid
 
 app.post('/login', validatePassword);// a post is when a client sends new information
 
-
 // gets cradentials uppon signup 
 app.post('/signup', signup);
-
-
-
