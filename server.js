@@ -13,7 +13,7 @@ const { fstat } = require('fs');
 
 const redisClient = createClient(    
     {
-        url: 'redis://tuckerStrand: default @10.128.0.2:6379',
+        url: 'redis://tuckerstrand: @10.128.0.2:6379',
 
         socket:{
             port:6379,
