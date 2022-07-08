@@ -1,13 +1,16 @@
-apiVersion: apps/v1 # this it the version of the API that we are using in this case it is kubernetties
+
+# Version of Kubernetes API we are using
+apiVersion: apps/v1
+# This can be a statefulset, or a deploument, a deploument doesnt need a hard drive that sticks around
 kind: Deployment
-metadata: 
-# this is the name of the deployment
+metadata:
+# This is the name of my deploymeny
   name: tucker-cit270
-spec: 
+spec:
   replicas: 1
   selector:
     matchLabels:
-        app: tucker-cit270
+      app: tucker-cit270
   template:
     metadata:
       labels:
@@ -15,28 +18,39 @@ spec:
     spec:
       containers:
       - name: tucker-cit270
-        #????
+      # This is hte Dockerhub url to my image
         image: tuckerstrand/cit270
-        command: ['npm']
-        args: ["run", "start"]
+        # This is the command to run oncew the container starts
+        command: ["pm"]
+        # These are the argumentst to pass to the command when the 
+        args: ["run","start"]
+        # This is the port my containter is listening on, ex 443 or
         ports:
-          -containerPort: 443
+          - containerPort: 443
         resources:
           limits:
+          # This is the max CPU (in cores) my container can use
             cpu: ".125"
+          # This is the mac memory (in Millabytes)
             memory: "500Mi"
           requests:
+          # This is the minimum CPU (in cores) my container can use
             cpu: ".1"
+          # This is the minimum memory (in Millabytes)
             memory: "250Mi"
         livenessProbe:
-            httpGet:
-                path: /
-                port: 443
-            initialDelaySeconds: 3
-            periodSeconds: 3
+          httpGet:
+          # This is the url to call to see if my API  is running
+            path: /
+          # This is the port to use to see if my API is running
+            port: 443
+          initialDelaySeconds: 3
+          periodSeconds: 3
         readinessProbe:
-            httpGet:
-                path: /
-                port: 443
-            initialDelaySeconds: 3
-            periodSeconds: 3
+          httpGet:
+          # This is the url to call to see fi my API has started
+            path: /
+          # This is the port to use to see if my API has started
+            port: 443
+          initialDelaySeconds: 3
+          periodSeconds: 3
