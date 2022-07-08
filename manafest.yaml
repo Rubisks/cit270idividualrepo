@@ -29,7 +29,7 @@ spec:
             requests:
                 cpu: ".1"
                 memory: "250Mi"
-        livenessProve:
+        livenessProbe:
             httpGet:
                 path: /
                 port: 443
