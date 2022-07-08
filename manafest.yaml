@@ -1,4 +1,4 @@
-appVersion: apps/v1 # this it the version of the API that we are using in this case it is kubernetties
+ppVersion: apps/v1 # this it the version of the API that we are using in this case it is kubernetties
 kind: deployment
 metadata: 
 # this is the name of the deployment
@@ -7,7 +7,7 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-    app: tucker-cit270
+        app: tucker-cit270
   template:
     metadata:
       labels:
@@ -15,29 +15,29 @@ spec:
     spec:
       containers:
       - name: tucker-cit270
-      #????
-      image: tuckerstrand/cit270
-      command: ['npm']
-      args: ["run", "start"]
-      ports:
-        -containerPort: 443
-      resources:
-        limits:
+        #????
+        image: tuckerstrand/cit270
+        command: ['npm']
+        args: ["run", "start"]
+        ports:
+            -containerPort: 443
+        resources:
+            limits:
 
-          cpu: ".125"
-          memory: "500Mi"
-        requests:
-          cpu: ".1"
-          memory: "250Mi"
-      livenessProve:
-        httpGet:
-          path: /
-          port: 443
-        initialDelaySeconds: 3
-        periodSeconds: 3
-      readinessProbe:
-        httpGet:
-        path: /
-        port: 443
-      initialDelaySeconds: 3
-      periodSeconds: 3
+                cpu: ".125"
+                memory: "500Mi"
+            requests:
+                cpu: ".1"
+                memory: "250Mi"
+        livenessProve:
+            httpGet:
+                path: /
+                port: 443
+            initialDelaySeconds: 3
+            periodSeconds: 3
+        readinessProbe:
+            httpGet:
+                path: /
+                port: 443
+            initialDelaySeconds: 3
+            periodSeconds: 3
