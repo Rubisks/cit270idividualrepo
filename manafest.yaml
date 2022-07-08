@@ -1,5 +1,5 @@
 apiVersion: apps/v1 # this it the version of the API that we are using in this case it is kubernetties
-kind: deployment
+kind: Deployment
 metadata: 
 # this is the name of the deployment
   name: tucker-cit270
