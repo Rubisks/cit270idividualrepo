@@ -20,10 +20,9 @@ spec:
         command: ['npm']
         args: ["run", "start"]
         ports:
-            -containerPort: 443
+          -containerPort: 443
         resources:
             limits:
-
                 cpu: ".125"
                 memory: "500Mi"
             requests:
