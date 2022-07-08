@@ -22,12 +22,12 @@ spec:
         ports:
           -containerPort: 443
         resources:
-            limits:
-                cpu: ".125"
-                memory: "500Mi"
-            requests:
-                cpu: ".1"
-                memory: "250Mi"
+          limits:
+            cpu: ".125"
+            memory: "500Mi"
+          requests:
+            cpu: ".1"
+            memory: "250Mi"
         livenessProbe:
             httpGet:
                 path: /
