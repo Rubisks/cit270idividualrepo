@@ -54,3 +54,17 @@ spec:
             port: 443
           initialDelaySeconds: 3
           periodSeconds: 3
+
+#this is the start of a new document for the oad balancer 
+---
+apiVersion: v1
+kind: Service
+meradata:
+  name: tucker-cit270-loadbalancer
+spec:
+  selector:
+    app: tucker-cit270
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 3000
