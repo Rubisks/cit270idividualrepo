@@ -1,4 +1,4 @@
-ppVersion: apps/v1 # this it the version of the API that we are using in this case it is kubernetties
+apiVersion: apps/v1 # this it the version of the API that we are using in this case it is kubernetties
 kind: deployment
 metadata: 
 # this is the name of the deployment
