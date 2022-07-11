@@ -1,25 +1,25 @@
-#0 2022 Rodrigo Sanchez
+#0 2022 tucker strand
 # Version of Kubernetes API we are using
 apiVersion: apps/v1
 # This can be a statefulset, or a deploument, a deploument doesnt need a hard drive that sticks around
 kind: Deployment
 metadata:
 # This is the name of my deploymeny
-  name: rodrigo-cit270
+  name: tucker-cit270
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rodrigo-cit270
+      app: tucker-cit270
   template:
     metadata:
       labels:
-        app: rodrigo-cit270
+        app: tucker-cit270
     spec:
       containers:
-        - name: rodrigo-cit270
+        - name: tucker-cit270
         # This is the Dockerhub url to my image
-          image: yabork/cit270
+          image: tuckerstrand/cit270
           # This is the command to run oncew the container starts
           command: ["npm"]
           # These are the argumentst to pass to the command when the 
@@ -63,10 +63,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rodrigo-cit270-loadbalancer
+  name: tucker-cit270-loadbalancer
 spec:
   selector:
-    app: rodrigo-cit270
+    app: tucker-cit270
   type: LoadBalancer
   ports:
   - port: 80
