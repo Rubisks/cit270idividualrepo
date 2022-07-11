@@ -13,11 +13,12 @@ const { fstat } = require('fs');
 
 const redisClient = createClient(    
     {
-       // url: 'redis://default: @35.239.149.196:6379',
+
+        //external ip address for redis
+        url: 'redis://default: @35.239.149.196:6379',
 
         // saved redis url that is used localy for node server
-        url: 'redis://default: @10.128.0.2:6379',
-
+        //url: 'redis://default: @10.128.0.2:6379',
         socket:{
             port:6379,
             host:"127.0.0.1",
