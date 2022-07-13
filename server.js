@@ -2,18 +2,15 @@ const express = require ('express');
 const https = require ('https');
 const fs = require('fs');
 // crates an explress application we cant listen without.
-const port = 443;
+const port = 3000;
 const app = express();
 const md5 = require('md5');
 const bodyParser = require('body-parser');// body parser is called middleware
 const {createClient} = require('redis');
-const { response } = require('express');
-const { fstat } = require('fs');
 
 
 const redisClient = createClient(    
     {
-
         //external ip address for redis
         url: 'redis://default: @35.239.149.196:6379',
 
@@ -30,15 +27,18 @@ const redisClient = createClient(
 app.use(bodyParser.json());// use the middleware(call it before anthing else happens on each request)
 
 // call the listen through APP (express application)
-https.createServer({
-    key: fs.readFileSync('server.key'),
-    cert: fs.readFileSync('server.cert'),
-    passphrase :'P@ssw0rd',
-},app).listen(port, async ()=>{
-    await redisClient.connect();// makes a connections to redis database
-    console.log("listening on port: " + port);
-});
-
+// https.createServer({
+//     key: fs.readFileSync('server.key'),
+//     cert: fs.readFileSync('server.cert'),
+//     passphrase :'P@ssw0rd',
+// },app).listen(port, async ()=>{
+//     await redisClient.connect();// makes a connections to redis database
+//     console.log("listening on port: " + port);
+// });
+app.listen(port,async()=>{
+    await redisClient.connect();
+    console.log('listening on port: ' , port)
+})
 
 // calls get and if there are no path parameters ('/')
 app.get('/', (req,res)=>{res.send("Hello")});//every time somthing calls your API that is a request
