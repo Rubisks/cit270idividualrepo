@@ -71,3 +71,24 @@ spec:
   ports:
   - port: 80
     targetPort: 3000
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: tucker-dev-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-cluster-issuer"
+spec:
+  tls:
+  - hosts:
+    - tucker-node.cit270.com
+    secretName: tucker-dev-tls
+  - host: tucker-node.cit270.com
+    http:
+      paths:
+      - backend:
+          serviceName: tucker-cit270-loadbalancer
+          servicePort: 80
